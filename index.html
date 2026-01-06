@@ -109,9 +109,9 @@
             padding: 5rem 0;
         }
         
-        /* Header Styles */
+        /* Header Styles - FIXED */
         header {
-            background-color: rgba(255, 255, 255, 0.95);
+            background-color: rgba(255, 255, 255, 0.98);
             backdrop-filter: blur(10px);
             position: fixed;
             top: 0;
@@ -120,23 +120,26 @@
             z-index: 1000;
             box-shadow: var(--shadow-sm);
             transition: all 0.3s ease;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.9);
         }
         
         .header-container {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 1.25rem 1.5rem;
+            padding: 1rem 1.5rem;
+            position: relative;
         }
         
         .logo-container {
             display: flex;
             align-items: center;
             gap: 0.75rem;
+            z-index: 1002;
         }
         
         .logo-text {
-            font-size: 2rem;
+            font-size: 1.75rem;
             font-weight: 800;
             color: var(--primary-blue);
             letter-spacing: -0.025em;
@@ -147,7 +150,7 @@
             color: var(--dark-blue);
         }
         
-        /* Mobile Menu Toggle */
+        /* Mobile Menu Toggle - RIGHT SIDE */
         .menu-toggle {
             display: none;
             flex-direction: column;
@@ -158,6 +161,7 @@
             border: none;
             cursor: pointer;
             z-index: 1001;
+            position: relative;
         }
         
         .menu-toggle span {
@@ -169,7 +173,7 @@
             transition: all 0.3s ease;
         }
         
-        /* Navigation */
+        /* Navigation - UPDATED FOR MOBILE */
         .nav-menu {
             display: flex;
             align-items: center;
@@ -207,12 +211,12 @@
             width: 100%;
         }
         
-        /* Hero Section */
+        /* Hero Section - SPACE FIXED */
         .hero {
             background: var(--gradient-blue);
             color: var(--white);
             padding: 12rem 0 8rem;
-            margin-top: 5rem;
+            margin-top: 0; /* REMOVED margin-top to eliminate white space */
             position: relative;
             overflow: hidden;
         }
@@ -285,6 +289,17 @@
         
         .btn-whatsapp:hover {
             background-color: var(--whatsapp-dark);
+            transform: translateY(-3px);
+            box-shadow: var(--shadow-lg);
+        }
+        
+        .btn-phone {
+            background-color: var(--primary-blue);
+            color: var(--white);
+        }
+        
+        .btn-phone:hover {
+            background-color: var(--dark-blue);
             transform: translateY(-3px);
             box-shadow: var(--shadow-lg);
         }
@@ -391,9 +406,19 @@
             font-size: 1.125rem;
         }
         
-        .service-button {
+        .service-buttons {
             margin-top: auto;
-            align-self: flex-start;
+            display: flex;
+            flex-direction: column;
+            gap: 0.75rem;
+            align-items: center;
+        }
+        
+        .service-buttons .btn {
+            width: 100%;
+            max-width: 250px;
+            text-align: center;
+            justify-content: center;
         }
         
         /* Service Area */
@@ -420,25 +445,20 @@
         }
         
         .area-item {
-            background-color: var(--white);
+            background-color: var(--primary-blue); /* ALL BLUE NOW */
             padding: 0.875rem 1.5rem;
             border-radius: var(--radius-full);
             font-weight: 600;
-            color: var(--gray-800);
+            color: var(--white);
             box-shadow: var(--shadow-sm);
             transition: all 0.3s ease;
             border: 2px solid transparent;
         }
         
         .area-item:hover {
-            border-color: var(--primary-blue);
+            border-color: var(--dark-blue);
             transform: translateY(-3px);
             box-shadow: var(--shadow-md);
-        }
-        
-        .area-item.highlight {
-            background-color: var(--primary-blue);
-            color: var(--white);
         }
         
         .area-map {
@@ -710,7 +730,7 @@
             color: var(--gray-800);
         }
         
-        /* Mobile Responsive */
+        /* Mobile Responsive - FIXED */
         @media (max-width: 1024px) {
             h1 {
                 font-size: 3rem;
@@ -759,8 +779,8 @@
                 position: fixed;
                 top: 0;
                 right: -100%;
-                width: 80%;
-                max-width: 400px;
+                width: 100%;
+                max-width: 300px;
                 height: 100vh;
                 background-color: var(--white);
                 flex-direction: column;
@@ -769,7 +789,8 @@
                 padding: 6rem 2rem 2rem;
                 box-shadow: var(--shadow-xl);
                 transition: right 0.4s ease;
-                z-index: 999;
+                z-index: 1000;
+                gap: 0;
             }
             
             .nav-menu.active {
@@ -785,6 +806,7 @@
                 padding: 1rem 0;
                 font-size: 1.25rem;
                 border-bottom: 1px solid var(--gray-200);
+                width: 100%;
             }
             
             .hero h1 {
@@ -807,6 +829,10 @@
             
             .services-grid, .features-grid {
                 grid-template-columns: 1fr;
+            }
+            
+            .service-buttons .btn {
+                max-width: 100%;
             }
             
             .floating-buttons {
@@ -840,16 +866,20 @@
             
             .hero {
                 padding: 8rem 0 4rem;
-                margin-top: 4rem;
             }
             
             .logo-text {
-                font-size: 1.75rem;
+                font-size: 1.5rem;
             }
             
             .floating-buttons {
                 bottom: 1rem;
                 right: 1rem;
+            }
+            
+            .area-item {
+                padding: 0.75rem 1.25rem;
+                font-size: 0.9rem;
             }
         }
     </style>
@@ -943,9 +973,14 @@
                             <li><i class="fas fa-check-circle"></i> Kombi tesisatı ve bakımı</li>
                         </ul>
                         
-                        <a href="tel:05322472159" class="btn btn-primary service-button">
-                            <i class="fas fa-phone-alt"></i> Hemen Ara
-                        </a>
+                        <div class="service-buttons">
+                            <a href="tel:05322472159" class="btn btn-phone">
+                                <i class="fas fa-phone-alt"></i> 0532 247 21 59
+                            </a>
+                            <a href="https://wa.me/905322472159?text=Merhaba,%20tesisat%20hizmeti%20almak%20istiyorum." target="_blank" class="btn btn-whatsapp">
+                                <i class="fab fa-whatsapp"></i> WhatsApp
+                            </a>
+                        </div>
                     </div>
                 </div>
                 
@@ -964,9 +999,14 @@
                             <li><i class="fas fa-check-circle"></i> Elektrik panosu bakımı</li>
                         </ul>
                         
-                        <a href="tel:05322472159" class="btn btn-primary service-button">
-                            <i class="fas fa-phone-alt"></i> Hemen Ara
-                        </a>
+                        <div class="service-buttons">
+                            <a href="tel:05322472159" class="btn btn-phone">
+                                <i class="fas fa-phone-alt"></i> 0532 247 21 59
+                            </a>
+                            <a href="https://wa.me/905322472159?text=Merhaba,%20elektrik%20hizmeti%20almak%20istiyorum." target="_blank" class="btn btn-whatsapp">
+                                <i class="fab fa-whatsapp"></i> WhatsApp
+                            </a>
+                        </div>
                     </div>
                 </div>
                 
@@ -985,9 +1025,14 @@
                             <li><i class="fas fa-check-circle"></i> Termostatik vana montajı</li>
                         </ul>
                         
-                        <a href="tel:05322472159" class="btn btn-primary service-button">
-                            <i class="fas fa-phone-alt"></i> Hemen Ara
-                        </a>
+                        <div class="service-buttons">
+                            <a href="tel:05322472159" class="btn btn-phone">
+                                <i class="fas fa-phone-alt"></i> 0532 247 21 59
+                            </a>
+                            <a href="https://wa.me/905322472159?text=Merhaba,%20petek%20temizleme%20hizmeti%20almak%20istiyorum." target="_blank" class="btn btn-whatsapp">
+                                <i class="fab fa-whatsapp"></i> WhatsApp
+                            </a>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -1003,9 +1048,9 @@
                     <p>Aşağıdaki bölgelerde acil ve profesyonel hizmet veriyoruz. 7/24 acil servisimizle en kısa sürede müdahale ediyoruz.</p>
                     
                     <div class="area-list">
-                        <div class="area-item highlight">Esenyurt</div>
-                        <div class="area-item highlight">Avcılar</div>
-                        <div class="area-item highlight">Beylikdüzü</div>
+                        <div class="area-item">Esenyurt</div>
+                        <div class="area-item">Avcılar</div>
+                        <div class="area-item">Beylikdüzü</div>
                         <div class="area-item">Büyükçekmece</div>
                         <div class="area-item">Küçükçekmece</div>
                         <div class="area-item">Esenler</div>
@@ -1203,7 +1248,7 @@
                 const targetElement = document.querySelector(targetId);
                 if(targetElement) {
                     window.scrollTo({
-                        top: targetElement.offsetTop - 100,
+                        top: targetElement.offsetTop - 80,
                         behavior: 'smooth'
                     });
                 }
@@ -1213,12 +1258,12 @@
         // Add scroll effect to header
         window.addEventListener('scroll', () => {
             const header = document.querySelector('header');
-            if(window.scrollY > 50) {
+            if(window.scrollY > 20) {
                 header.style.boxShadow = '0 4px 20px rgba(0, 0, 0, 0.1)';
                 header.style.backgroundColor = 'rgba(255, 255, 255, 0.98)';
             } else {
                 header.style.boxShadow = '0 1px 3px rgba(0,0,0,0.12)';
-                header.style.backgroundColor = 'rgba(255, 255, 255, 0.95)';
+                header.style.backgroundColor = 'rgba(255, 255, 255, 0.98)';
             }
         });
         
